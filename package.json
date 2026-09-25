@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "name": "tugas1-restful-2428240113",
+  "version": "1.0.0",
+  "main": "app.js",
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "Achmad Faiz Yudha Ramadhan - 2428240113",
+  "license": "ISC",
+  "description": ""
+}
