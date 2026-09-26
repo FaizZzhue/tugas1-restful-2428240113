@@ -276,3 +276,24 @@ app.delete("/movies/:id", (req, res) => {
 		data: null,
 	});
 });
+
+app.use((req, res) => {
+	res.status(404).json({
+		status: "error",
+		message: "Endpoint tidak ditemukan",
+		data: null,
+	});
+});
+
+// ======================================================
+// Menjalankan server
+// ======================================================
+
+if (process.env.NODE_ENV !== "production") {
+	app.listen(PORT, () => {
+		console.log(`Server berjalan di http://localhost:${PORT}`);
+	});
+}
+
+// Export app untuk Vercel
+module.exports = app;
