@@ -40,10 +40,8 @@ let movies = [
 // ID berikutnya
 let nextId = 4;
 
-// ======================================================
 // GET /
 // Informasi API
-// ======================================================
 
 app.get("/", (req, res) => {
 	res.status(200).json({
@@ -63,10 +61,8 @@ app.get("/", (req, res) => {
 	});
 });
 
-// ======================================================
 // GET /movies
 // Ambil semua film
-// ======================================================
 
 app.get("/movies", (req, res) => {
 	const { genre } = req.query;
@@ -84,10 +80,8 @@ app.get("/movies", (req, res) => {
 	res.status(200).json(movies);
 });
 
-// ======================================================
 // GET /movies/:id
 // Ambil satu film berdasarkan ID
-// ======================================================
 
 app.get("/movies/:id", (req, res) => {
 	const id = parseInt(req.params.id);
@@ -105,7 +99,6 @@ app.get("/movies/:id", (req, res) => {
 	res.status(200).json(movie);
 });
 
-// ======================================================
 // POST /movies
 // Tambah film baru
 //
@@ -117,7 +110,6 @@ app.get("/movies/:id", (req, res) => {
 //   "ratingUsia": "SU",
 //   "sutradara": "Budi Santoso"
 // }
-// ======================================================
 
 app.post("/movies", (req, res) => {
 	const {judul, genre, durasiMenit, ratingUsia, sutradara} = req.body;
@@ -170,7 +162,6 @@ app.post("/movies", (req, res) => {
 	});
 });
 
-// ======================================================
 // PUT /movies/:id
 // Mengubah seluruh data film
 //
@@ -182,7 +173,6 @@ app.post("/movies", (req, res) => {
 //   "ratingUsia": "13+",
 //   "sutradara": "Budi Santoso"
 // }
-// ======================================================
 
 app.put("/movies/:id", (req, res) => {
 	const id = parseInt(req.params.id);
@@ -248,10 +238,8 @@ app.put("/movies/:id", (req, res) => {
 	});
 });
 
-// ======================================================
 // DELETE /movies/:id
 // Hapus film
-// ======================================================
 
 app.delete("/movies/:id", (req, res) => {
 	const id = parseInt(req.params.id);
@@ -285,9 +273,7 @@ app.use((req, res) => {
 	});
 });
 
-// ======================================================
 // Menjalankan server
-// ======================================================
 
 if (process.env.NODE_ENV !== "production") {
 	app.listen(PORT, () => {
