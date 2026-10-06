@@ -1,12 +1,14 @@
 {
   "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.5",
     "express": "^5.2.1"
   },
   "name": "tugas1-restful-2428240113",
   "version": "1.0.0",
   "main": "app.js",
   "devDependencies": {
-    "nodemon": "^3.1.14"
+    "nodemon": "^1.14.10"
   },
   "scripts": {
     "start": "node app.js",
@@ -15,5 +17,14 @@
   "keywords": [],
   "author": "Achmad Faiz Yudha Ramadhan - 2428240113",
   "license": "ISC",
-  "description": ""
+  "description": "Kuis 1 PAW2 - Refactor RESTful API Bioskop Film",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FaizZzhue/tugas1-restful-2428240113.git"
+  },
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/FaizZzhue/tugas1-restful-2428240113/issues"
+  },
+  "homepage": "https://github.com/FaizZzhue/tugas1-restful-2428240113#readme"
 }
