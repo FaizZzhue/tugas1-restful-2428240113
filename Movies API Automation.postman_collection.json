@@ -1,0 +1,266 @@
+{
+  "info": {
+    "_postman_id": "7d74c76e-40e0-489a-9f99-8ed190796b5d",
+    "name": "Movies API Automation",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "54798161",
+    "_collection_link": "https://go.postman.co/collection/54798161-7d74c76e-40e0-489a-9f99-8ed190796b5d?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Get All Movies",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/movies",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "movies"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Movie By ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/movies/1",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "movies",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Filter Movies By Genre",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/movies?genre=Drama",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "movies"
+          ],
+          "query": [
+            {
+              "key": "genre",
+              "value": "Drama"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Movie",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "x-api-key",
+            "value": "{{api_key}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"judul\": \"Film Automation Test\",\r\n  \"genre\": \"Drama\",\r\n  \"durasiMenit\": 120,\r\n  \"ratingUsia\": \"13+\",\r\n  \"sutradara\": \"Sutradara Pengujian\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/movies",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "movies"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Movie",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "x-api-key",
+            "value": "{{api_key}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"judul\": \"Film Automation Test Updated\",\r\n  \"genre\": \"Drama\",\r\n  \"durasiMenit\": 130,\r\n  \"ratingUsia\": \"13+\",\r\n  \"sutradara\": \"Sutradara Pengujian\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/movies/{{movieId}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "movies",
+            "{{movieId}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Movie",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "{{api_key}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/movies/{{movieId}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "movies",
+            "{{movieId}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Movie Without API Key",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"judul\": \"Film Tanpa API Key\",\r\n  \"genre\": \"Drama\",\r\n  \"durasiMenit\": 100,\r\n  \"ratingUsia\": \"13+\",\r\n  \"sutradara\": \"Sutradara Pengujian\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/movies",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "movies"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Movie With Invalid Body",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "{{api_key}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"judul\": \"Film Tidak Lengkap\",\r\n  \"genre\": \"Drama\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/movies",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "movies"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Movie With Invalid ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/movies/99999",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "movies",
+            "99999"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "test",
+      "script": {
+        "exec": [
+          "pm.test(\"Status code harus 404\", function () {\r",
+          "    pm.response.to.have.status(404);\r",
+          "});\r",
+          "\r",
+          "pm.test(\"Pesan menyatakan film tidak ditemukan\", function () {\r",
+          "    const response = pm.response.json();\r",
+          "\r",
+          "    pm.expect(response.status).to.eql(\"error\");\r",
+          "    pm.expect(response.message).to.eql(\r",
+          "        \"Data dengan id 99999 tidak ditemukan\"\r",
+          "    );\r",
+          "});\r",
+          "\r",
+          "pm.test(\"Data respons bernilai null\", function () {\r",
+          "    const response = pm.response.json();\r",
+          "\r",
+          "    pm.expect(response.data).to.eql(null);\r",
+          "});"
+        ],
+        "type": "text/javascript"
+      }
+    }
+  ]
+}
