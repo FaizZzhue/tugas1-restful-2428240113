@@ -37,14 +37,25 @@ const validateMovieBody = (body) => {
 
 const parseProjection = (fields) => {
   if (!fields) return "-__v";
-  const requested = fields.split(",").map((field) => field.trim()).filter(Boolean);
-  const invalid = requested.filter((field) => !allowedFields.includes(field));
+
+  const requested = fields
+    .split(",")
+    .map((field) => field.trim())
+    .filter(Boolean);
+
+  const invalid = requested.filter(
+    (field) => !allowedFields.includes(field)
+  );
+
   if (invalid.length) {
-    const error = new Error(`Field projection tidak diizinkan: ${invalid.join(", ")}`);
+    const error = new Error(
+      `Field projection tidak diizinkan: ${invalid.join(", ")}`
+    );
     error.status = 400;
     throw error;
   }
-  return requested.join(" ") + " -__v";
+
+  return requested.join(" ");
 };
 
 // GET /movies: filtering + pagination + sorting + projection.
