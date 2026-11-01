@@ -1,98 +1,64 @@
-// Data film disimpan di memory
-let movies = [
+const mongoose = require("mongoose");
+
+const pemeranSchema = new mongoose.Schema(
   {
-    id: 1,
-    judul: "Jejak Senja",
-    genre: "Drama",
-    durasiMenit: 118,
-    ratingUsia: "13+",
-    sutradara: "Arif Wibowo",
+    nama: {
+      type: String,
+      required: [true, "Nama pemeran wajib diisi"],
+      trim: true,
+    },
+    peran: {
+      type: String,
+      trim: true,
+      default: "Pemeran",
+    },
   },
+  { _id: false }
+);
+
+const movieSchema = new mongoose.Schema(
   {
-    id: 2,
-    judul: "Malam Terakhir",
-    genre: "Thriller",
-    durasiMenit: 105,
-    ratingUsia: "17+",
-    sutradara: "Raka Pratama",
+    judul: {
+      type: String,
+      required: [true, "Judul film wajib diisi"],
+      trim: true,
+    },
+    genre: {
+      type: String,
+      required: [true, "Genre film wajib diisi"],
+      trim: true,
+      index: true,
+    },
+    durasiMenit: {
+      type: Number,
+      required: [true, "Durasi film wajib diisi"],
+      min: [1, "Durasi harus lebih dari 0"],
+    },
+    ratingUsia: {
+      type: String,
+      required: [true, "Rating usia wajib diisi"],
+      enum: ["SU", "13+", "17+", "21+"],
+    },
+    sutradara: {
+      type: String,
+      trim: true,
+      default: "",
+    },
+    // EMBEDDING: data pemeran disimpan langsung di dalam dokumen Movie.
+    pemeran: {
+      type: [pemeranSchema],
+      default: [],
+    },
+    // REFERENCING: Movie menyimpan ObjectId yang menunjuk dokumen Cinema.
+    cinema: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Cinema",
+      required: [true, "Cinema wajib dipilih (gunakan cinemaId)"],
+    },
   },
-  {
-    id: 3,
-    judul: "Petualangan Langit",
-    genre: "Adventure",
-    durasiMenit: 125,
-    ratingUsia: "SU",
-    sutradara: "Dimas Saputra",
-  },
-];
+  { timestamps: true }
+);
 
-let nextId = 4;
+movieSchema.index({ judul: "text", sutradara: "text" });
 
-// Mengambil seluruh film
-const getAllMovies = () => {
-  return movies;
-};
-
-// Mengambil film berdasarkan ID
-const getMovieById = (id) => {
-  return movies.find((movie) => movie.id === id);
-};
-
-// Filter berdasarkan genre
-const getMoviesByGenre = (genre) => {
-  return movies.filter(
-    (movie) => movie.genre.toLowerCase() === genre.toLowerCase()
-  );
-};
-
-// Menambahkan film
-const createMovie = (movieData) => {
-  const newMovie = {
-    id: nextId++,
-    ...movieData,
-  };
-
-  movies.push(newMovie);
-
-  return newMovie;
-};
-
-// Mengubah film
-const updateMovie = (id, movieData) => {
-  const index = movies.findIndex((movie) => movie.id === id);
-
-  if (index === -1) {
-    return null;
-  }
-
-  const updatedMovie = {
-    id,
-    ...movieData,
-  };
-
-  movies[index] = updatedMovie;
-
-  return updatedMovie;
-};
-
-// Menghapus film
-const deleteMovie = (id) => {
-  const index = movies.findIndex((movie) => movie.id === id);
-
-  if (index === -1) {
-    return false;
-  }
-
-  movies.splice(index, 1);
-
-  return true;
-};
-
-module.exports = {
-  getAllMovies,
-  getMovieById,
-  getMoviesByGenre,
-  createMovie,
-  updateMovie,
-  deleteMovie,
-};
+module.exports = mongoose.model("Movie", movieSchema);
